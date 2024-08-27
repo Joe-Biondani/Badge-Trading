@@ -69,26 +69,73 @@ body {
 
 .main-wrapper {
     margin-top: 5vh;
-    width: 65vw;
-    margin-left: 17.5vw;
+    width: 70vw;
+    margin-left: 15vw;
 }
 
-.main-wrapper>.latest-title {
+.main-wrapper>.top {
+    --top-height: 5vh;
+
+    height: var(--top-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-wrapper>.top>.latest-title {
+    height: var(--top-height);
     font-size: 1.7rem;
     font-weight: 800;
-    margin-left: -5vw;
+    /* margin-left: -5vw; */
     color: #003982;
 }
 
+.main-wrapper>.top>.search-bar {
+    height: var(--top-height);
+    /* margin-right: -5vw; */
+    display: flex;
+    align-items: center;
+}
+
+.main-wrapper>.top>.search-bar>button {
+    height: var(--top-height);
+    padding: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+}
+
+.main-wrapper>.top>.search-bar>button:hover {
+    cursor: pointer;
+}
+
+.main-wrapper>.top>.search-bar>button>ion-icon {
+    height: var(--top-height);
+    line-height: var(--top-height);
+    color: rgb(120, 120, 120);
+}
+
+.main-wrapper>.top>.search-bar>input {
+    margin-left: 5px;
+    border: 1px solid rgba(120, 120, 120, 0.5);
+    border-radius: 5px;
+    color: black;
+    padding: 3px;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
 .main-wrapper>.feed {
-    width: 65vw;
+    width: 70vw;
+    padding: 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+
+    --feed-item-size: 20vw;
 }
 
 .main-wrapper>.feed>.feed-item {
     margin-bottom: 5vh;
-    width: 25vw;
+    width: var(--feed-item-size);
     list-style: none;
     border-radius: 20px;
     border: 1px solid rgba(120, 120, 120, 0.5);
@@ -99,7 +146,7 @@ body {
 }
 
 .main-wrapper>.feed>.feed-item>.actions {
-    width: 25vw;
+    width: var(--feed-item-size);
     height: 3vw;    
     position: absolute;
     display: flex;
@@ -125,6 +172,7 @@ body {
 
 .main-wrapper>.feed>.feed-item>.actions>button:hover {
     color: rgb(255,255,255);
+    cursor: pointer;
 }
 
 .main-wrapper>.feed>.feed-item>.actions>button.report-btn:hover {
@@ -138,51 +186,44 @@ body {
 }
 
 .main-wrapper>.feed>.feed-item>img {
-    width: 25vw;
-    height: 25vw; /* we want a square img (unless opened??) */
+    width: var(--feed-item-size);
+    height: var(--feed-item-size); /* we want a square img (unless opened??) */
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.main-wrapper>.feed>.feed-item>.top-line {
+.main-wrapper>.feed>.feed-item>.badge-name {
     width: 95%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: var(--top-line-height);
-    margin-left: 2.5%;
-    margin-top: 1vh;
-    height: auto;
-}
-
-.main-wrapper>.feed>.feed-item>.top-line>.badge-name {
-    width: 55%;
     font-size: 1.3rem;
     color: black;
     font-weight: 800;
     line-height: var(--top-line-height);
+    margin-left: 2.5%;
+    margin-top: 1vh;
+    display: block;
 }
 
-.main-wrapper>.feed>.feed-item>.top-line>.country {
-    width: 45%;
+.main-wrapper>.feed>.feed-item>.country {
+    width: 95%;
+    margin-left: 2.5%;
     font-size: 1.1rem;
     color: rgb(50,50,50);
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: left;
 }
 
-.main-wrapper>.feed>.feed-item>.top-line>.country>span {
+.main-wrapper>.feed>.feed-item>.country>span {
     font-size: 0.8rem;
     text-transform: uppercase;
     color: rgb(50,50,50);
     font-weight: 900;
-    text-align: right;
+    text-align: left;
+    display: block;
 }
 
-.main-wrapper>.feed>.feed-item>.top-line>.country>ion-icon {
+.main-wrapper>.feed>.feed-item>.country>ion-icon {
     font-size: 1.1rem;
     color: rgb(50,50,50);
     font-weight: 900;
@@ -193,7 +234,37 @@ body {
 
 .main-wrapper>.feed>.feed-item>.badge-info {
     width: 94%;
-    margin-left: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
     font-size: 0.9rem;
     color: black;
+    display: block;
+}
+
+.main-wrapper>.feed>.feed-item>.tags {
+    --tag-height: 3vh;
+
+    width: 100%;
+    display: flex;
+    height: var(--tag-height);
+    margin-top: 10px;
+    align-items: center;
+    overflow-x: hidden;
+    border-radius: 0 0 5px 5px;
+}
+
+.main-wrapper>.feed>.feed-item>.tags>.tag {
+    height: var(--tag-height);
+    line-height: var(--tag-height);
+    padding-left: 5px;
+    padding-right: 5px;
+    background: #7413dc;
+    color: white;
+    text-transform: uppercase;
+    align-items: center;
+    text-align: center;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.8rem;
 }

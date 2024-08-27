@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Badge Trading Prototype 1</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="header-wrapper">
         <div class="left-wrapper">
             <h1 class="website-title" id="header-web-title">ScoutSwap</h1>
             <span class="new-bdg-btn"></ion-icon></span>
         </div>
-        
+
         <div class="right-wrapper">
             <div class="new-bdg-btn">
                 <span><ion-icon name="add-circle-outline"></ion-icon></span>
@@ -33,7 +35,14 @@
     </div>
 
     <div class="main-wrapper">
+        <div class="top">
         <span class="latest-title">Latest Badge Posts</span>
+        <div class="search-bar">
+            <button><ion-icon name="filter-sharp"></ion-icon></button>
+            <button><ion-icon name="search-sharp"></ion-icon></button>
+            <input type="text" name="search" id="search" placeholder="Search">
+        </div>
+    </div>
         <ul class="feed" id="feed">
             <li class="feed-item">
                 <div class="actions">
@@ -42,46 +51,19 @@
                     <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
                 </div>
                 <img src="../IMG-20240827-WA0078.jpg">
-                <div class="top-line">
-                    <span class="badge-name">UK Queen's Death</span>
-                    <div class="country">
-                        <span> united kingdom</span>
-                        <ion-icon name="location-sharp"></ion-icon>
-                    </div>
+                <span class="badge-name">UK Queen's Death</span>
+                <div class="country">
+                    <span> united kingdom</span>
+                    <ion-icon name="location-sharp"></ion-icon>
                 </div>
                 <span class="badge-info">This badge was available after the Queen's death in 2022.</span>
-            </li>
-            <li class="feed-item">
-                <div class="actions">
-                    <button><ion-icon name="send-sharp"></ion-icon></button>
-                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
-                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
+                <div class="tags">
+                    <span class="tag">UK</span>
+                    <span class="tag">EVENT</span>
+                    <span class="tag">INTERNATIONAL</span>
+                    <span class="tag">QUEEN</span>
+                    <span class="tag">MEMORIAL</span>
                 </div>
-                <img src="../IMG-20240827-WA0078.jpg">
-                <div class="top-line">
-                    <span class="badge-name">The Hampshire Hogs</span>
-                    <div class="country">
-                        <span> united kingdom</span>
-                        <ion-icon name="location-sharp"></ion-icon>
-                    </div>
-                </div>
-                <span class="badge-info">This was the unit badge for Unit 62, The Hampshire Hogs from the UK for the WSJ in South Korea 2023.</span>
-            </li>
-            <li class="feed-item">
-                <div class="actions">
-                    <button><ion-icon name="send-sharp"></ion-icon></button>
-                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
-                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
-                </div>
-                <img src="../IMG-20240827-WA0078.jpg">
-                <div class="top-line">
-                    <span class="badge-name">Badge Name</span>
-                    <div class="country">
-                        <span> Country</span>
-                        <ion-icon name="location-sharp"></ion-icon>
-                    </div>
-                </div>
-                <span class="badge-info">Badge info.....</span>
             </li>
         </ul>
     </div>
@@ -89,4 +71,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
