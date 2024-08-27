@@ -4,8 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Badge Trading Prototype 1</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="header-wrapper">
+        <div class="left-wrapper">
+            <h1 class="website-title" id="header-web-title">ScoutSwap</h1>
+            <span class="new-bdg-btn"></ion-icon></span>
+        </div>
+        
+        <div class="right-wrapper">
+            <div class="new-bdg-btn">
+                <span><ion-icon name="add-circle-outline"></ion-icon></span>
+            </div>
+            <div class="nav-item">
+                <a><ion-icon name="home-outline"></ion-icon></a>
+            </div>
+            <div class="nav-item">
+                <a><ion-icon name="chatbubbles-outline"></ion-icon></a>
+            </div>
+            <div class="nav-item">
+                <a><ion-icon name="person-circle-outline"></ion-icon></a>
+            </div>
+            <div class="nav-item">
+                <a><ion-icon name="settings-outline"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <span class="latest-title">Latest Badge Posts</span>
+        <ul class="feed" id="feed">
+            <li class="feed-item">
+                <div class="actions">
+                    <button><ion-icon name="send-sharp"></ion-icon></button>
+                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
+                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
+                </div>
+                <img src="../IMG-20240827-WA0078.jpg">
+                <div class="top-line">
+                    <span class="badge-name">UK Queen's Death</span>
+                    <div class="country">
+                        <span> united kingdom</span>
+                        <ion-icon name="location-sharp"></ion-icon>
+                    </div>
+                </div>
+                <span class="badge-info">This badge was available after the Queen's death in 2022.</span>
+            </li>
+            <li class="feed-item">
+                <div class="actions">
+                    <button><ion-icon name="send-sharp"></ion-icon></button>
+                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
+                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
+                </div>
+                <img src="../IMG-20240827-WA0078.jpg">
+                <div class="top-line">
+                    <span class="badge-name">The Hampshire Hogs</span>
+                    <div class="country">
+                        <span> united kingdom</span>
+                        <ion-icon name="location-sharp"></ion-icon>
+                    </div>
+                </div>
+                <span class="badge-info">This was the unit badge for Unit 62, The Hampshire Hogs from the UK for the WSJ in South Korea 2023.</span>
+            </li>
+            <li class="feed-item">
+                <div class="actions">
+                    <button><ion-icon name="send-sharp"></ion-icon></button>
+                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
+                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
+                </div>
+                <img src="../IMG-20240827-WA0078.jpg">
+                <div class="top-line">
+                    <span class="badge-name">Badge Name</span>
+                    <div class="country">
+                        <span> Country</span>
+                        <ion-icon name="location-sharp"></ion-icon>
+                    </div>
+                </div>
+                <span class="badge-info">Badge info.....</span>
+            </li>
+        </ul>
+    </div>
+    <!-- IP FETCHING WILL BE DONE WITH http://ip-api.com/json -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+html {
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+
+    --header-height: 7vh;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.header-wrapper {
+    background-color: #7413dc;
+    width: 100vw;
+    height: var(--header-height);
+    padding: 2vh 3vw 2vh 3vw;
+    color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-wrapper>.left-wrapper {
+    width: 30%;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: var(--header-height);
+}
+
+.header-wrapper>.left-wrapper>h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.header-wrapper>.right-wrapper {
+    width: 25%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 6vw;
+    line-height: var(--header-height);
+}
+
+.header-wrapper>.right-wrapper>.new-bdg-btn>span {
+    height: var(--header-height);
+}
+
+.header-wrapper>.right-wrapper>.new-bdg-btn>span>ion-icon {
+    line-height: var(--header-height);
+    height: var(--header-height);
+    font-size: 2rem;
+}
+
+.header-wrapper>.right-wrapper>.nav-item>a {
+    height: var(--header-height);
+}
+
+.header-wrapper>.right-wrapper>.nav-item>a>ion-icon {
+    line-height: var(--header-height);
+    height: var(--header-height);
+    font-size: 2rem;
+}
+
+.main-wrapper {
+    margin-top: 5vh;
+    width: 65vw;
+    margin-left: 17.5vw;
+}
+
+.main-wrapper>.latest-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-left: -5vw;
+    color: #003982;
+}
+
+.main-wrapper>.feed {
+    width: 65vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.main-wrapper>.feed>.feed-item {
+    margin-bottom: 5vh;
+    width: 25vw;
+    list-style: none;
+    border-radius: 20px;
+    border: 1px solid rgba(120, 120, 120, 0.5);
+    padding: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    
+    --top-line-height: 5vh;
+}
+
+.main-wrapper>.feed>.feed-item>.actions {
+    width: 25vw;
+    height: 3vw;    
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: start;
+    padding-top: 5px;
+    border-radius: 10px 10px 0 0;
+    background: linear-gradient(rgba(120,120,120,0.5), rgba(120,120,120,0));
+}
+
+.main-wrapper>.feed>.feed-item>.actions>button {
+    padding: 0;
+    margin: 0;
+    height: 2vw;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 2vw;
+    margin-right: 10px;
+    transition: all 0.2s linear;
+}
+
+.main-wrapper>.feed>.feed-item>.actions>button:hover {
+    color: rgb(255,255,255);
+}
+
+.main-wrapper>.feed>.feed-item>.actions>button.report-btn:hover {
+    color: rgb(220, 0, 0);
+}
+
+.main-wrapper>.feed>.feed-item>.actions>button>ion-icon {
+    height: 2vw;
+    line-height: 2vw;
+    font-size: 1rem;
+}
+
+.main-wrapper>.feed>.feed-item>img {
+    width: 25vw;
+    height: 25vw; /* we want a square img (unless opened??) */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-wrapper>.feed>.feed-item>.top-line {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--top-line-height);
+    margin-left: 2.5%;
+    margin-top: 1vh;
+    height: auto;
+}
+
+.main-wrapper>.feed>.feed-item>.top-line>.badge-name {
+    width: 55%;
+    font-size: 1.3rem;
+    color: black;
+    font-weight: 800;
+    line-height: var(--top-line-height);
+}
+
+.main-wrapper>.feed>.feed-item>.top-line>.country {
+    width: 45%;
+    font-size: 1.1rem;
+    color: rgb(50,50,50);
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.main-wrapper>.feed>.feed-item>.top-line>.country>span {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: rgb(50,50,50);
+    font-weight: 900;
+    text-align: right;
+}
+
+.main-wrapper>.feed>.feed-item>.top-line>.country>ion-icon {
+    font-size: 1.1rem;
+    color: rgb(50,50,50);
+    font-weight: 900;
+    height: var(--top-line-height);
+    line-height: var(--top-line-height);
+    rotate: 10deg;
+}
+
+.main-wrapper>.feed>.feed-item>.badge-info {
+    width: 94%;
+    margin-left: 3%;
+    font-size: 0.9rem;
+    color: black;
+}
