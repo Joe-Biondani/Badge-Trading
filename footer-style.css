@@ -68,3 +68,40 @@ footer>ul>li>a>ion-icon {
 footer>ul>li>a:hover {
     color: rgb(200,200,200);
 }
+
+@media (max-width:600px)  {
+    footer {
+        --footer-height: 30vh;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 0;
+    }
+    
+    footer>.left-wrapper {
+        height: calc(var(--footer-height) / 2);
+        width: 100%;
+    }
+    
+    footer>.left-wrapper>span {
+        height: calc(var(--footer-height) / 6);
+        line-height: calc(var(--footer-height) / 6);
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    footer>ul {
+        height: calc(var(--footer-height) / 2);
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
+    footer>ul>li,footer>ul>li>a,footer>ul>li>a>ion-icon {
+        height: calc(var(--footer-height) / 8);
+        line-height: calc(var(--footer-height) / 8);
+        font-size: 0.7rem;
+        text-align: center;
+    }
+}
