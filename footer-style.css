@@ -1,0 +1,70 @@
+footer {
+    --footer-height: 15vh;
+
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10vw;
+    padding-left: 10vw;
+    height: var(--footer-height);
+    background: #003982;
+    margin: 0;
+    overflow: hidden;
+    align-items: center;
+}
+
+footer>.left-wrapper {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: var(--footer-height);
+    justify-content: space-evenly;
+}
+
+footer>.left-wrapper>span {
+    color: white;
+    list-style: none;
+    text-decoration: none;
+    height: calc(var(--footer-height)/2);
+    line-height: calc(var(--footer-height)/2);
+}
+
+footer>.left-wrapper>span>a {
+    color: white;
+    transition: all 0.2s ease;
+}
+
+footer>.left-wrapper>span>a:hover {
+    color: white;
+    color: rgb(200,200,200);
+}
+
+footer>ul {
+    display: flex;
+    flex-direction: row;
+    height: var(--footer-height);
+    justify-content: space-evenly;
+}
+
+footer>ul>li {
+    color: white;
+    list-style: none;
+    text-decoration: none;
+    margin-left: 2vw;
+    line-height: var(--footer-height);
+    height: var(--footer-height);
+}
+
+footer>ul>li>a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+footer>ul>li>a>ion-icon {
+    line-height: var(--footer-height);
+    height: var(--footer-height);
+}
+
+footer>ul>li>a:hover {
+    color: rgb(200,200,200);
+}
