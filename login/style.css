@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+html {
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+
+    --header-height: 7vh;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.header-wrapper {
+    background-color: #7413dc;
+    width: 100vw;
+    height: var(--header-height);
+    padding: 2vh 3vw 2vh 3vw;
+    color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-wrapper>.left-wrapper {
+    width: 30%;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: var(--header-height);
+}
+
+.header-wrapper>.left-wrapper>h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.main-wrapper {
+    height: calc(100vh - 2vh - 2vh - var(--header-height) - var(--footer-height));
+    display: flex;
+    align-items: center;
+}
+
+.main-wrapper>.login-form {
+    width: 80vw;
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-wrapper>.login-form>.text {
+    height: 30px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #7413dc;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.main-wrapper>.login-form>.login-btn {
+    height: 40px;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background: #006ddf;
+    color: white;
+    font-weight: 800;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-wrapper>.login-form>.error {
+    width: 100%;
+    text-align: center;
+    color: #e22e12;
+    font-weight: 700;
+    display: none;
+}
+
+.main-wrapper>.login-form>.signup {
+    width: 100%;
+    text-align: center;
+    color: #666666;
+}
+
+.main-wrapper>.login-form>.signup>a {
+    color: #006ddf;
+    text-decoration: none;
+}
+
+
+@media (min-width:641px)  {
+    .main-wrapper>.login-form {
+        width: 60vw;
+        margin-left: 20vw;
+    }
+}
+@media (min-width:961px)  {
+    .main-wrapper>.login-form {
+        width: 40vw;
+        margin-left: 30vw;
+    }
+}
+@media (min-width:1025px)  {
+    .main-wrapper>.login-form {
+        width: 40vw;
+        margin-left: 30vw;
+    }
+}
+@media (min-width:1281px)  {
+    .main-wrapper>.login-form {
+        width: 40vw;
+        margin-left: 30vw;
+    }
+}
+
+/* SPECIAL FOOTER FORMATTING! */
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}

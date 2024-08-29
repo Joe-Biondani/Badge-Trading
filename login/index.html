@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Trading Prototype 1</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../footer-style.css">
+</head>
+<body>
+    <div class="header-wrapper">
+        <div class="left-wrapper">
+            <h1 class="website-title" id="header-web-title">ScoutSwap</h1>
+            <span class="new-bdg-btn"></ion-icon></span>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- <span class="privacy-title">Terms of Service</span> -->
+
+        <div class="login-form">
+            <input type="email" required name="email-login" id="email-login" placeholder="Email address" class="text">
+            <input type="password" required name="pword-login" id="pword-login" placeholder="Password" class="text">
+            <input type="button" name="login" value="Login" id="login-btn" class="login-btn">
+            <span id="error" class="error">This is an error message.</span>
+            <span class="signup">Not got an account? <a href="/signup/index.html">Sign up</a></span>
+        </div>
+    </div>
+    
+
+    <include src="../footer.html">Loading...</include>
+    
+    <script>
+        // FOOTER
+        (() => {
+            const includes = document.getElementsByTagName('include');
+            [].forEach.call(includes, i => {
+                let filePath = i.getAttribute('src');
+                fetch(filePath).then(file => {
+                    file.text().then(content => {
+                        i.insertAdjacentHTML('afterend', content);
+                        i.remove();
+                    });
+                });
+            });
+        })();
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
