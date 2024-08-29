@@ -1,0 +1,31 @@
+{
+  "name": "badge-trading",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --exec 'npm start'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joe-Biondani/Badge-Trading.git"
+  },
+  "author": "Joe Biondani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joe-Biondani/Badge-Trading/issues"
+  },
+  "homepage": "https://github.com/Joe-Biondani/Badge-Trading#readme",
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-slash": "^2.0.1",
+    "node-fetch": "^3.3.2",
+    "path": "^0.12.7"
+  },
+  "nodemonConfig": {
+    "ext": "js,json,html,css",
+    "delay": "2"
+  }
+}
