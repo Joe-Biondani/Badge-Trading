@@ -1,6 +1,8 @@
-footer {
+:root {
     --footer-height: 15vh;
+}
 
+footer {
     display: flex;
     justify-content: space-between;
     padding-right: 10vw;
@@ -70,8 +72,11 @@ footer>ul>li>a:hover {
 }
 
 @media (max-width:600px)  {
-    footer {
+    :root {
         --footer-height: 30vh;
+    }
+
+    footer {
         flex-direction: column;
         justify-content: space-evenly;
         padding: 0;
