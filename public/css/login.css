@@ -126,6 +126,6 @@ body {
 /* SPECIAL FOOTER FORMATTING! */
 footer {
     position: absolute;
-    width: 100%;
+    width: 80vw; /* due to padding */
     bottom: 0;
 }

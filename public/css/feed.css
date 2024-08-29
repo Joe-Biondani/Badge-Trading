@@ -264,7 +264,6 @@ body {
     margin-top: 10px;
     align-items: center;
     overflow-x: hidden;
-    border-radius: 0 0 5px 5px;
 }
 
 .main-wrapper>.feed>.feed-item>.tags>.tag {
