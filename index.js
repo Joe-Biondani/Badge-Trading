@@ -5,6 +5,13 @@ const slash = require("express-slash");
 const fetch = import("node-fetch");
 const path = import("path");
 const maintenance = false;
+const https = require("https");
+const fs = require("fs");
+
+const httpsOptions = {
+    cert: fs.readFileSync('cert.pem'),
+    key: fs.readFileSync('key.pem')
+};
 
 // App settings
 app.enable("strict routing");
@@ -73,4 +80,5 @@ app.use(function(req, res, next){
 // Port
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
-app.listen(8000, () => console.log(`Listening on port ${8000}`));
+// app.listen(443, () => console.log(`Listening on port ${443}`));
+https.createServer(httpsOptions, app).listen(443, () => console.log(`Listening on port ${443}`));
