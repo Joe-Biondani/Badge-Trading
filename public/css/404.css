@@ -32,6 +32,11 @@ body {
     height: var(--header-height);
 }
 
+.header-wrapper>.left-wrapper>img {
+    height: var(--header-height);
+    margin-right: 10px;
+}
+
 .header-wrapper>.left-wrapper>h1 {
     font-size: 1.5rem;
     font-weight: 800;
