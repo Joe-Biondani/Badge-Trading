@@ -6,14 +6,11 @@
     <title>Badge Trading Prototype 1</title>
     <link rel="stylesheet" href="css/privacy.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/public-nav.css">
 </head>
+
 <body>
-    <div class="header-wrapper">
-        <div class="left-wrapper">
-            <img src="logos/White Smaller Res.png" alt="ScoutSwap logo">
-            <h1 class="website-title" id="header-web-title">ScoutSwap</h1>
-        </div>
-    </div>
+    <include src="public-nav.html"></include>
 
     <div class="quick-links-wrapper">
         <span class="title">Privacy Policy</span>
@@ -135,22 +132,9 @@
 
     <include src="footer.html">Loading...</include>
     
-    <script>
-        // FOOTER
-        (() => {
-            const includes = document.getElementsByTagName('include');
-            [].forEach.call(includes, i => {
-                let filePath = i.getAttribute('src');
-                fetch(filePath).then(file => {
-                    file.text().then(content => {
-                        i.insertAdjacentHTML('afterend', content);
-                        i.remove();
-                    });
-                });
-            });
-        })();
-    </script>
+    <script defer src="element-loading.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="mobile-nav.js"></script>
 </body>
 </html>
