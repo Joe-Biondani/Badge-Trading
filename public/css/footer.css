@@ -56,6 +56,11 @@ footer>ul>li {
     height: var(--footer-height);
 }
 
+footer>ul>li>img {
+    height: calc(var(--footer-height) - 20px);
+    margin-top: 10px;
+}
+
 footer>ul>li>a {
     color: white;
     text-decoration: none;
