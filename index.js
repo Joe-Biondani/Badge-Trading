@@ -36,11 +36,11 @@ router.get("/feed", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-    res.redirect("/feed")
+    res.redirect("/home")
 });
 
 router.get("/home", (req, res) => {
-    res.redirect("/feed")
+    res.render("home")
 });
 
 router.get("/login", (req, res) => {

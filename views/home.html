@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Trading Prototype 1</title>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+    <div class="header-wrapper">
+        <div class="left-wrapper">
+            <img src="logos/White Smaller Res.png" alt="ScoutSwap logo">
+            <h1 class="website-title" id="header-web-title">ScoutSwap</h1>
+        </div>
+
+        <div class="right-wrapper">
+            <div class="nav-item">
+                <a href="/home"><ion-icon name="home-outline"></ion-icon><span> Home</span></a>
+            </div>
+            <!-- <div class="nav-item">
+                <a><ion-icon name="information-circle-outline"></ion-icon></a>
+            </div> -->
+            <div class="nav-item">
+                <a><ion-icon name="people-outline"></ion-icon><span> Team</span></a>
+            </div>
+            <div class="nav-item">
+                <a class="login-btn" href="/login">Login</a>
+            </div>
+            <div class="nav-item">
+                <a class="signup-btn" href="/signup">Signup</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="hero-wrapper">
+            <img src="HomeHero1.png" alt="A crowd of Scouts at Roverway 2024.">
+            <div class="text-holder">
+                <span>Discover.</span>
+                <span>Chat.</span>
+                <span>Trade.</span>
+            </div>
+        </div>
+        <div class="what-is section">
+            <div class="flex-container">
+                <span class="title">What is ScoutSwap?</span>
+                <span class="desc">ScoutSwap is a brand new trading site for badges, scarfs and more! Made for Scouts, by Scouts.</span>
+            </div>
+        </div>
+        <div class="why-use section">
+            <div class="flex-container">
+                <span class="title">Why use ScoutSwap?</span>
+                <span class="desc">We are dedicated to preventing scams and the other dangers that can sometimes come with online trading. Our mission is to create a safe platform where anyone from anywhere can trade.</span>
+            </div>
+        </div>
+        <div class="how-much section">
+            <div class="flex-container">
+                <span class="title">How much does it cost?</span>
+                <span class="desc">Our platform is absolutely 100% <b><u>FREE</u></b>! We rely on donations and advertisements to keep our service running.</span>
+            </div>
+        </div>
+    </div>
+
+    <include src="footer.html">Loading...</include>
+    
+    <script>
+        // FOOTER
+        (() => {
+            const includes = document.getElementsByTagName('include');
+            [].forEach.call(includes, i => {
+                let filePath = i.getAttribute('src');
+                fetch(filePath).then(file => {
+                    file.text().then(content => {
+                        i.insertAdjacentHTML('afterend', content);
+                        i.remove();
+                    });
+                });
+            });
+        })();
+    </script>
+    <!-- IP FETCHING WILL BE DONE WITH http://ip-api.com/json -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
