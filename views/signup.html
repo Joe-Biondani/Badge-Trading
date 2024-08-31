@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Trading Prototype 1</title>
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/public-nav.css">
+</head>
+
+<body>
+    <include src="public-nav.html"></include>
+
+    <div class="main-wrapper">
+        <!-- <span class="privacy-title">Terms of Service</span> -->
+
+        <div class="signup-form" id="signup-form">
+            <input type="email" required name="email-signup" id="email-signup" placeholder="Email address" class="text">
+            <input type="password" required name="pword-signup" id="pword-signup" placeholder="Password" class="text">
+            <input type="button" name="signup" value="Sign up" id="signup-btn" class="signup-btn">
+            <span id="error" class="error">This is an error message.</span>
+            <span class="signup">Already got an account? <a href="/login">Login</a></span>
+        </div>
+
+        <div class="verification-form signup-form" id="verification-form" style="display:none;">
+            <span class="instructions-title">Email verification</span><br>
+            <span class="instructions" id="code-sent-to">We've sent a code to </span><br><br>
+            <span class="instructions" id="code-not-arrived">Code not arrived? Check your spam folder or contact us.</span><br><br><br><br>
+            <input type="text" required name="code" id="code" placeholder="Verification code" class="text">
+            <input type="button" name="verify-email" value="Verify email" id="verify-btn" class="verify-btn signup-btn">
+            <span id="verify-error" class="error">This is an error message.</span>
+        </div>
+    </div>
+    
+
+    <include src="footer.html">Loading...</include>
+    
+    <script defer src="element-loading.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="mobile-nav.js"></script>
+
+    <script>
+        const signup_form = document.getElementById('signup-form');
+        const email_input = document.getElementById('email-signup');
+        const pword_input = document.getElementById('pword-signup');
+        const signup_btn_1 = document.getElementById('signup-btn');
+        const error1 = document.getElementById('error');
+
+        const verification_form = document.getElementById('verification-form');
+        const code_input = document.getElementById('code');
+        const verify_btn = document.getElementById('verify-btn');
+        const verify_error = document.getElementById('verify-error');
+        const code_sent_to = document.getElementById('code-sent-to');
+
+        function isEmail(emailAdress) {
+            let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (emailAdress.match(regex)) 
+                return true; 
+            else 
+                return false; 
+        }
+
+
+        signup_btn_1.onclick = function(e) {
+            e.preventDefault();
+            error1.textContent = ""
+            error1.style.display = "none"
+            
+            if (!isEmail(email_input.value)) {
+                error1.style.display = "block";
+                error1.textContent = "Invalid email address.";
+                return;
+            };
+            
+            if (pword_input.value.length < 8) {
+                error1.style.display = "block";
+                error1.textContent = "Password must be 8 characters or longer.";
+                return;
+            };
+
+            fetch("https://api.scoutswap.co.uk/accounts/sendVerificationEmail", {
+                method: 'POST',
+                body: JSON.stringify({ email: email_input.value }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+            })
+                .then(() => {
+                    code_sent_to.textContent = `We've sent a code to ${email_input.value}`
+                    signup_form.style.display = "none";
+                    verification_form.style.display = "";
+                })
+                .catch((error) => {
+                    error1.style.display = "block";
+                    error1.textContent = `Something went wrong. Contact us with this message: ${error}`
+                    console.log(error)
+                })
+        }
+    </script>
+</body>
+</html>

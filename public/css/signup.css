@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+html {
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.main-wrapper {
+    height: calc(100vh - 2vh - 2vh - var(--header-height) - var(--footer-height));
+    display: flex;
+    align-items: center;
+}
+
+.main-wrapper>.signup-form {
+    width: 80vw;
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-wrapper>.signup-form>.text {
+    height: 30px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #7413dc;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.main-wrapper>.signup-form>.signup-btn {
+    height: 40px;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background: #006ddf;
+    color: white;
+    font-weight: 800;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-wrapper>.signup-form>.error {
+    width: 100%;
+    text-align: center;
+    color: #e22e12;
+    font-weight: 700;
+    display: none;
+}
+
+.main-wrapper>.signup-form>span:not(.error) {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+#verification-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#verification-form>input[type="button"] {
+    margin: 0;
+}
+
+#code {
+    margin-top: 10px;
+}
+
+.code-sent-to {
+    color: black;
+}
+
+.instructions-title {
+    color: #7413dc;
+}
+
+#code-not-arrived {
+    font-size: 0.7rem;
+    color: #666666;
+}
+
+.main-wrapper>.signup-form>.signup {
+    width: 100%;
+    text-align: center;
+    color: #666666;
+}
+
+.main-wrapper>.signup-form>.signup>a {
+    color: #006ddf;
+    text-decoration: none;
+}
+
+.main-wrapper>.signup-form>.instructions-title {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.main-wrapper>.signup-form>.instructions {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+@media (min-width:641px)  {
+    .main-wrapper>.signup-form {
+        width: 60vw;
+        margin-left: 20vw;
+    }
+}
+@media (min-width:961px)  {
+    .main-wrapper>.signup-form {
+        width: 40vw;
+        margin-left: 30vw;
+    }
+}
+@media (min-width:1025px)  {
+    .main-wrapper>.signup-form {
+        width: 40vw;
+        margin-left: 30vw;
+    }
+}
+@media (min-width:1281px)  {
+    .main-wrapper>.signup-form {
+        width: 40vw;
+        margin-left: 30vw;
+    }
+}
+
+/* SPECIAL FOOTER FORMATTING! */
+footer {
+    position: absolute;
+    width: 80vw; /* due to padding */
+    bottom: 0;
+}
