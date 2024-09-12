@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Trading Prototype 1</title>
+    <link rel="stylesheet" href="css/newPost.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/private-nav.css">
+</head>
+
+<body>
+    <link rel="stylesheet" href="css/cookie-notice.css">
+    <include src="cookie-notice.html">Loading...</include>
+    <script src="cookie-notice.js"></script>
+    
+    <include src="private-nav.html"></include>
+
+    <div class="main-wrapper">
+        <!-- <span class="privacy-title">Terms of Service</span> -->
+
+        <div class="post-form">
+            <input type="text" required id="title" placeholder="Title" class="text">
+            <input type="text" required id="description" placeholder="Description" class="text">
+            <input type="text" required id="tags" placeholder="Tags" class="text">
+            <input type="file" required id="file" class="file" accept="image/x-png,image/jpeg">
+            <input type="button" value="Post" id="post-btn" class="post-btn">
+            <span id="error" class="error">This is an error message.</span>
+            <span class="note">Separate tags with a comma (,)</span>
+            <span class="note">All posts must be manually approved by an admin - this can take up to 24 hours.</span>
+        </div>
+    </div>
+
+    <include src="footer.html">Loading...</include>
+    
+    <script defer src="element-loading.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="mobile-nav.js"></script>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+    <script src="check-cookie.js" defer></script>
+    <script>
+        function getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        const file_input = document.getElementById('file');
+        const tags_input = document.getElementById('tags');
+        const title_input = document.getElementById('title');
+        const desc_input = document.getElementById('description');
+        const btn = document.getElementById('post-btn');
+        const error = document.getElementById('error');
+
+        btn.onclick = function(e) {
+            e.preventDefault();
+            error.style.display = "none";
+            const selectedFile = file_input.files[0];
+            let tags = tags_input.value.split(",")
+
+            let fileReader = new FileReader();
+            let base64 = "";
+            fileReader.onload = () => {
+                base64 = fileReader.result;
+            };
+            fileReader.readAsDataURL(selectedFile);
+            
+            fetch(`https://api.scoutswap.co.uk/accounts/idToUsername?id=${getCookie(".SCTSWP_ID")}`)
+                .then(async (response) => {
+                    let data = await response.json();
+
+                    if (data.status == 'ok') {
+                        let username = data.data;
+                        let location = "Unknown";
+
+                        fetch("https://api.country.is/")
+                            .then(async (response) => {
+                                let data = await response.json();
+                                location = data.country;
+                            })
+                            .catch((e) => {
+                                console.log("LOCATION NOT FETCHED!");
+                                console.log(e);
+                            })
+                            .finally(() => {
+                                fetch("https://api.scoutswap.co.uk/posts/new", {
+                                    method: 'POST',
+                                    body: JSON.stringify({
+                                        country: location,
+                                        title: title_input.value,
+                                        description: desc_input.value,
+                                        tags: tags,
+                                        username: username,
+                                        creatorId: getCookie(".SCTSWP_ID"),
+                                    }),
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "Access-Control-Allow-Origin": "*",
+                                    },
+                                })
+                                    .then(async (response) => {
+                                        console.log(response);
+                                        let data = await response.text();
+                                        console.log(data);
+                                        fetch("https://api.scoutswap.co.uk/posts/new/image", {
+                                            method: 'POST',
+                                            body: JSON.stringify({
+                                                id: data,
+                                                image: base64,
+                                            }),
+                                            headers: {
+                                                "Content-Type": "application/json",
+                                                "Access-Control-Allow-Origin": "*",
+                                            },
+                                        })
+                                            .then(() => {
+                                                console.log("done?")
+                                                window.location = "/feed"
+                                            })
+                                            .catch((e) => {
+                                                error.style.display = "block";
+                                                error.textContent = `Something went wrong uploading the image. Please contact us.`;
+                                            });
+                                    })
+                                    .catch((e) => {
+                                        error.style.display = "block";
+                                        error.textContent = `Something went wrong creating your post. Contact us stating: ${e}`;
+                                    });
+                            })
+                    } else {
+                        error.style.display = "block";
+                        error.textContent = "Something went wrong. Try again later."
+                    };
+                })
+                .catch((e) => {
+                    error.style.display = "block";
+                    error.textContent = `Something went wrong. Error: ${e}`
+                });
+        }
+    </script>
+</body>
+</html>
