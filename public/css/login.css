@@ -72,6 +72,11 @@ body {
     text-decoration: none;
 }
 
+#cf-turnstile {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
 @media (min-width:641px)  {
     .main-wrapper>.login-form {

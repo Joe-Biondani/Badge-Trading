@@ -25,7 +25,7 @@ body {
     flex-direction: column;
 }
 
-.main-wrapper>.signup-form>.text {
+.main-wrapper>.signup-form .text {
     height: 30px;
     margin-bottom: 20px;
     font-size: 1.1rem;
@@ -34,6 +34,28 @@ body {
     border: 2px solid #7413dc;
     font-family: 'Nunito Sans', sans-serif;
     transition: all 0.2s ease;
+}
+
+.main-wrapper>.signup-form .text {
+    height: 30px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #7413dc;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.main-wrapper>.signup-form>select {
+    height: 30px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #7413dc;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s ease;
+    background: none;
 }
 
 .main-wrapper>.signup-form>.signup-btn {
@@ -74,11 +96,86 @@ body {
     align-items: center;
 }
 
+#info-form {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.username-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.username-container>span {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.username-container>span, .username-container>span>ion-icon {
+    height: 44px;
+    line-height: 44px;
+}
+
 #verification-form>input[type="button"] {
     margin: 0;
 }
 
+#cf-turnstile {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+p {
+    margin: 0 !important;
+}
+
+#info-form>input[type="button"] {
+    margin-left: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox>span {
+    text-align: center;
+    font-weight: 500;
+    color: #666666;
+}
+
+.checkbox>.custom-checkbox>ion-icon {
+    width: 100%;
+    height: 100%;
+    color: #666666;
+}
+
+.checkbox>.custom-checkbox {
+    height: 30px;
+    padding: 5px;
+    border-radius: 10px;
+    margin-right: 10px;
+    width: 30px;
+    border: 2px solid #7413dc;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s ease;
+    background: none;
+}
+
+.checkbox>.custom-checkbox:hover {
+    cursor: pointer;
+}
+
 #code {
+    margin-top: 10px;
+}
+
+#username,select {
     margin-top: 10px;
 }
 
@@ -95,6 +192,13 @@ body {
     color: #666666;
 }
 
+#username-error {
+    font-size: 0.7rem;
+    color: #666666;
+    margin-top: 5px !important;
+    margin-bottom: 0 !important;
+}
+
 .main-wrapper>.signup-form>.signup {
     width: 100%;
     text-align: center;
@@ -108,12 +212,17 @@ body {
 
 .main-wrapper>.signup-form>.instructions-title {
     font-size: 2rem;
-    font-weight: 800;
+    font-weight: 900;
 }
 
 .main-wrapper>.signup-form>.instructions {
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+.info-form>.instructions {
+    font-size: 0.7rem !important;
+    color: #666666;
 }
 
 @media (min-width:641px)  {
