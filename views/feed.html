@@ -11,6 +11,10 @@
 </head>
 
 <body>
+    <link rel="stylesheet" href="css/cookie-notice.css">
+    <include src="cookie-notice.html">Loading...</include>
+    <script src="cookie-notice.js"></script>
+    
     <include src="private-nav.html"></include>
 
     <div class="main-wrapper">
@@ -23,96 +27,32 @@
         </div>
     </div>
         <ul class="feed" id="feed">
-            <li class="feed-item">
-                <div class="actions">
-                    <button><ion-icon name="send-sharp"></ion-icon></button>
-                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
-                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
-                </div>
-                <img src="IMG-20240827-WA0078.jpg">
-                <span class="badge-name">UK Queen's Death</span>
-                <div class="country">
-                    <span> united kingdom</span>
-                    <ion-icon name="location-sharp"></ion-icon>
-                </div>
-                <span class="badge-info">This badge was available after the Queen's death in 2022.</span>
-                <div class="tags">
-                    <span class="tag">UK</span>
-                    <span class="tag">EVENT</span>
-                    <span class="tag">INTERNATIONAL</span>
-                    <span class="tag">QUEEN</span>
-                    <span class="tag">MEMORIAL</span>
-                </div>
-                <span class="posted-by">posted by: john_doe</span>
-            </li>
-            <li class="feed-item">
-                <div class="actions">
-                    <button><ion-icon name="send-sharp"></ion-icon></button>
-                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
-                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
-                </div>
-                <img src="IMG-20240827-WA0078.jpg">
-                <span class="badge-name">UK Queen's Death</span>
-                <div class="country">
-                    <span> united kingdom</span>
-                    <ion-icon name="location-sharp"></ion-icon>
-                </div>
-                <span class="badge-info">This badge was available after the Queen's death in 2022.</span>
-                <div class="tags">
-                    <span class="tag">UK</span>
-                    <span class="tag">EVENT</span>
-                    <span class="tag">INTERNATIONAL</span>
-                    <span class="tag">QUEEN</span>
-                    <span class="tag">MEMORIAL</span>
-                </div>
-                <span class="posted-by">posted by: john_doe</span>
-            </li>
-            <li class="feed-item">
-                <div class="actions">
-                    <button><ion-icon name="send-sharp"></ion-icon></button>
-                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
-                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
-                </div>
-                <img src="IMG-20240827-WA0078.jpg">
-                <span class="badge-name">UK Queen's Death</span>
-                <div class="country">
-                    <span> united kingdom</span>
-                    <ion-icon name="location-sharp"></ion-icon>
-                </div>
-                <span class="badge-info">This badge was available after the Queen's death in 2022.</span>
-                <div class="tags">
-                    <span class="tag">UK</span>
-                    <span class="tag">EVENT</span>
-                    <span class="tag">INTERNATIONAL</span>
-                    <span class="tag">QUEEN</span>
-                    <span class="tag">MEMORIAL</span>
-                </div>
-                <span class="posted-by">posted by: john_doe</span>
-            </li>
-            <li class="feed-item">
-                <div class="actions">
-                    <button><ion-icon name="send-sharp"></ion-icon></button>
-                    <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
-                    <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
-                </div>
-                <img src="IMG-20240827-WA0078.jpg">
-                <span class="badge-name">UK Queen's Death</span>
-                <div class="country">
-                    <span> united kingdom</span>
-                    <ion-icon name="location-sharp"></ion-icon>
-                </div>
-                <span class="badge-info">This badge was available after the Queen's death in 2022.</span>
-                <div class="tags">
-                    <span class="tag">UK</span>
-                    <span class="tag">EVENT</span>
-                    <span class="tag">INTERNATIONAL</span>
-                    <span class="tag">QUEEN</span>
-                    <span class="tag">MEMORIAL</span>
-                </div>
-                <span class="posted-by">posted by: john_doe</span>
-            </li>
+            
         </ul>
     </div>
+
+    <template>
+        <li class="feed-item">
+            <div class="actions">
+                <button><ion-icon name="send-sharp"></ion-icon></button>
+                <button><ion-icon name="bookmarks-sharp"></ion-icon></button>
+                <button class="report-btn"><ion-icon name="warning-sharp"></ion-icon></button>
+            </div>
+            <img src="IMG-20240827-WA0078.jpg">
+            <span class="badge-name">UK Queen's Death</span>
+            <div class="country">
+                <span> united kingdom</span>
+                <ion-icon name="location-sharp"></ion-icon>
+            </div>
+            <span class="badge-info">This badge was available after the Queen's death in 2022.</span>
+            <div class="tags">
+                <template>
+                    <span class="tag">UK</span>
+                </template>
+            </div>
+            <span class="posted-by">posted by: e</span>
+        </li>
+    </template>
 
     <include src="footer.html">Loading...</include>
     
@@ -121,6 +61,58 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="mobile-nav.js"></script>
+    <script src="check-cookie.js" defer></script>
+
+    <script>
+        const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+        const template = document.getElementsByTagName("template")[0];
+        const ul = document.getElementById("feed");
+        let start = 0;
+        let amount = 5; // optional!! defaults to 10
+
+        fetch(`https://api.scoutswap.co.uk/posts/recent?start=${start}&end=${amount}`)
+            .then(async (response) => {
+                let data = await response.json();
+
+                if (data.status == 'ok') {
+                    for (let i = 0; i < data.data.length; i++) {
+                        let post = data.data[i];
+                        if (!post) continue;
+                        let newTemplate = template.content.cloneNode(true);
+                        ul.appendChild(newTemplate);
+                        
+                        let li = ul.getElementsByClassName("feed-item")[ul.getElementsByClassName("feed-item").length-1];
+                        li.setAttribute("data-postid", i);
+
+                        li.getElementsByTagName("img")[0].src = post.image;
+                        li.getElementsByClassName("badge-name")[0].textContent = post.title;
+                        li.getElementsByClassName("country")[0]
+                          .getElementsByTagName("span")[0].textContent = " " +
+                          (regionNames.of(post.country) != null ? regionNames.of(post.country) : post.country);
+                        li.getElementsByClassName("badge-info")[0].textContent = post.description;
+                        li.getElementsByClassName("posted-by")[0].textContent = post.creatorUsername;
+
+                        const tag_template = li.getElementsByClassName("tags")[0].getElementsByTagName("template")[0];
+
+                        for (let j = 0; j < post.tags.length; j++) {
+                            let newTag = tag_template.content.cloneNode(true);
+                            li.getElementsByClassName("tags")[0].appendChild(newTag);
+                            li.getElementsByClassName("tags")[0]
+                              .getElementsByClassName("tag")[li.getElementsByClassName("tag").length-1]
+                              .textContent = post.tags[j].toLowerCase();
+                        }
+                    }
+                } else {
+                    console.log(data.status)
+                    console.log(data.error);
+                    alert("Something went wrong. Please contact support.");
+                }
+            })
+            .catch((e) => {
+                console.log(e)
+                alert("Something went wrong fetching posts. Please contact support.");
+            });
+    </script>
 </body>
 
 </html>
