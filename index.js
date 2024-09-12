@@ -8,6 +8,8 @@ const maintenance = false;
 const https = require("https");
 const fs = require("fs");
 
+const isOnline = false;
+
 const httpsOptions = {
     cert: fs.readFileSync('cert.pem'),
     key: fs.readFileSync('key.pem')
@@ -31,8 +33,8 @@ app.use(function (req, res, next) {
 
 // Routes
 router.get("/feed", (req, res) => {
-    res.render("feed");
-    res.status(200);
+    if (isOnline) return res.render("feed");
+    res.render("wip");
 });
 
 router.get("/", (req, res) => {
@@ -40,23 +42,39 @@ router.get("/", (req, res) => {
 });
 
 router.get("/home", (req, res) => {
-    res.render("home")
+    if (isOnline) return res.render("home");
+    res.render("wip");
+    res.status(200);
 });
 
 router.get("/login", (req, res) => {
-    res.render("login");
+    if (isOnline) return res.render("login");
+    res.render("wip");
 });
 
 router.get("/signup", (req, res) => {
-    res.render("signup");
+    if (isOnline) return res.render("signup");
+    res.render("wip");
 });
 
 router.get("/privacy", (req, res) => {
-    res.render("privacy");
+    if (isOnline) return res.render("privacy");
+    res.render("wip");
 });
 
 router.get("/tos", (req, res) => {
-    res.render("tos");
+    if (isOnline) return res.render("tos");
+    res.render("wip");
+});
+
+router.get("/new", (req, res) => {
+    if (isOnline) return res.render("newPost");
+    res.render("wip");
+});
+
+router.get("/admin/approveposts", (req, res) => {
+    if (isOnline) return res.render("admin/approvePosts");
+    res.render("wip");
 });
 
 app.use(function(req, res, next){
