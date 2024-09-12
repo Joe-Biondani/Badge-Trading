@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/public-nav.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
 </head>
 
 <body>
+    <link rel="stylesheet" href="css/cookie-notice.css">
+    <include src="cookie-notice.html">Loading...</include>
+    <script src="cookie-notice.js"></script>
+    
     <include src="public-nav.html"></include>
 
     <div class="main-wrapper">
@@ -19,7 +24,9 @@
             <input type="email" required name="email-login" id="email-login" placeholder="Email address" class="text">
             <input type="password" required name="pword-login" id="pword-login" placeholder="Password" class="text">
             <input type="button" name="login" value="Login" id="login-btn" class="login-btn">
+            <div id="cf-turnstile"></div>
             <span id="error" class="error">This is an error message.</span>
+            <span class="signup"><a href="/forgotpassword">Forgot password?</a></span>
             <span class="signup">Not got an account? <a href="/signup">Sign up</a></span>
         </div>
     </div>
@@ -31,5 +38,117 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="mobile-nav.js"></script>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+    <script>
+        const login_btn = document.getElementById('login-btn');
+        const error = document.getElementById('error');
+        const email_input = document.getElementById('email-login');
+        const pwod_input = document.getElementById('pword-login');
+        const cf_ts = document.getElementById('cf-turnstile');
+        
+        let cf_turnstile_approved = false;
+        let in_progress = false;
+
+        // if using synchronous loading, will be called once the DOM is ready
+        turnstile.ready(function () {
+            turnstile.render('#cf-turnstile', {
+                sitekey: '0x4AAAAAAAjxyJzl61PAQfob',
+                callback: function(token) {
+                    fetch(`https://api.scoutswap.co.uk/security/cfturnlogin?token=${token}`)
+                    .then(async (response) => {
+                        let data = await response.json();
+                        
+                        if (data.status == 'ok') {
+                            cf_turnstile_approved = data.data.valid;
+                        };
+                    })
+                    .catch((e) => {
+                        console.warn("captcha failed!")
+                    })
+                },
+            });
+        });
+
+        login_btn.onclick = function(e) {
+            e.preventDefault();
+
+            if (in_progress) return;
+            in_progress = true;
+
+            if (!cf_turnstile_approved) {
+                error.style.display = "block";
+                error.textContent = `Captcha invalid.`;
+                in_progress = false;
+                return;
+            };
+
+            error.textContent = "";
+            error.style.display = "none";
+            
+            let ip = "Unknown";
+
+            fetch("https://api.country.is/")
+                .then(async (response) => {
+                    let data = await response.json();
+                    ip = data.ip;
+                })
+                .catch((e) => {
+                    console.log("LOCATION NOT FETCHED!");
+                    console.log(e);
+                })
+                .finally(() => {
+                    fetch(`https://api.scoutswap.co.uk/accounts/login?email=${email_input.value}&password=${pwod_input.value}&ip=${ip}`, {
+                        method: 'GET',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                    })
+                        .then(async (response) => {
+                            let data = await response.json();
+
+                            if (data.status == 'ok') {
+                                if (data.data.isValidLogin) {
+                                    setCookie(".SCTSWP_TOKEN", data.data.token);
+                                    window.location = "/feed"
+                                } else {
+                                    error.style.display = "block";
+                                    error.textContent = `Invalid email/password.`;
+                                }
+                            } else {
+                                error.style.display = "block";
+                                error.textContent = `Something went wrong. Contact us with this message: ${error}`;
+                            }
+                        })
+                        .catch((error) => {
+                            error.style.display = "block";
+                            error.textContent = `Something went wrong. Contact us with this message: ${error}`;
+                            console.log(error);
+                        })
+                })
+        }
+    </script>
 </body>
 </html>
